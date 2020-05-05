@@ -13,7 +13,15 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
-    // TODO
+    const response = await api.post('repositories', {
+      title: `Novo repositório ${Date.now()}`,
+      url: "https://github.com/MattheusEinloft",
+      techs: ["Node.js", "ReactJS", "React Native"]
+    });
+
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
   }
 
   async function handleRemoveRepository(id) {
